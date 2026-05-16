@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Tirta Nada - Kolam Renang Cibogo, Serang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+
+        .nav-link { transition: color 0.3s; }
+        .nav-link:hover, .nav-link.active { color: #facc15; }
+
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(0,20,70,0.55) 0%, rgba(0,60,140,0.35) 100%);
+        }
+
+        .facility-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .facility-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.13);
+        }
+
+        .gallery-item { overflow: hidden; }
+        .gallery-item img {
+            transition: transform 0.45s ease;
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .gallery-item:hover img { transform: scale(1.07); }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        #lightbox.open { display: flex; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 3px; }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased">
+
+    <!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 bg-blue-900/95 backdrop-blur-sm shadow-lg transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-extrabold text-blue-900 text-sm select-none">TN</div>
+                <div class="leading-none">
+                    <p class="text-white font-bold text-sm">CV Tirta Nada</p>
+                    <p class="text-yellow-400 text-xs">Kolam Renang Cibogo</p>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-7">
+                <a href="#home"      class="nav-link text-white text-sm font-medium">Home</a>
+                <a href="#fasilitas" class="nav-link text-white text-sm font-medium">Fasilitas</a>
+                <a href="#galeri"    class="nav-link text-white text-sm font-medium">Galeri</a>
+                <a href="#tentang"   class="nav-link text-white text-sm font-medium">Tentang Kami</a>
+                <a href="#kontak"    class="nav-link text-white text-sm font-medium">Kontak</a>
+            </div>
+
+            <!-- Hamburger -->
+            <button id="burger" class="md:hidden text-white p-1" aria-label="Menu">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="burger-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    <path id="burger-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-blue-900 border-t border-blue-800 px-4 pb-4 pt-2 space-y-1">
+            <a href="#home"      class="block text-white py-2 text-sm font-medium nav-link" onclick="closeMenu()">Home</a>
+            <a href="#fasilitas" class="block text-white py-2 text-sm font-medium nav-link" onclick="closeMenu()">Fasilitas</a>
+            <a href="#galeri"    class="block text-white py-2 text-sm font-medium nav-link" onclick="closeMenu()">Galeri</a>
+            <a href="#tentang"   class="block text-white py-2 text-sm font-medium nav-link" onclick="closeMenu()">Tentang Kami</a>
+            <a href="#kontak"    class="block text-white py-2 text-sm font-medium nav-link" onclick="closeMenu()">Kontak</a>
+        </div>
+    </nav>
+
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section id="home" class="relative h-screen min-h-[620px] flex items-center justify-center overflow-hidden">
+        <img src="assets/hero-kolam-pengunjung.jpg" alt="Kolam Renang Tirta Nada"
+             class="absolute inset-0 w-full h-full object-cover object-center">
+        <div class="hero-overlay absolute inset-0"></div>
+
+        <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+            <span class="inline-block bg-yellow-400 text-blue-900 text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-wider">
+                Berdiri Sejak 17 April 2014
+            </span>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-lg leading-tight">
+                Kolam Renang<br>
+                <span class="text-yellow-400">Tirta Nada</span>
+            </h1>
+            <p class="text-lg md:text-xl mb-9 text-blue-100 max-w-2xl mx-auto leading-relaxed">
+                Destinasi wisata air yang terjangkau, aman, dan menyenangkan untuk seluruh keluarga di Kota Serang, Banten.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#fasilitas"
+                   class="bg-yellow-400 text-blue-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-300 transition shadow-lg">
+                    Lihat Fasilitas
+                </a>
+                <a href="#kontak"
+                   class="border-2 border-white text-white font-bold px-8 py-3 rounded-full hover:bg-white hover:text-blue-900 transition">
+                    Hubungi Kami
+                </a>
+            </div>
+        </div>
+
+        <!-- Stat bar -->
+        <div class="absolute bottom-0 left-0 right-0 bg-blue-900/85 backdrop-blur-sm py-4 border-t border-blue-800/50">
+            <div class="max-w-6xl mx-auto px-4 grid grid-cols-3 gap-2 text-center text-white">
+                <div>
+                    <p class="text-2xl md:text-3xl font-extrabold text-yellow-400">11+</p>
+                    <p class="text-xs md:text-sm text-blue-200">Tahun Beroperasi</p>
+                </div>
+                <div>
+                    <p class="text-2xl md:text-3xl font-extrabold text-yellow-400">10+</p>
+                    <p class="text-xs md:text-sm text-blue-200">Unit Kantin</p>
+                </div>
+                <div>
+                    <p class="text-2xl md:text-3xl font-extrabold text-yellow-400">3</p>
+                    <p class="text-xs md:text-sm text-blue-200">Kolam Renang</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ FASILITAS ═══════════════════════════════ -->
+    <section id="fasilitas" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-14">
+                <span class="text-blue-600 font-semibold text-xs uppercase tracking-widest">Apa yang kami tawarkan</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-gray-800">Fasilitas Lengkap</h2>
+                <p class="text-gray-500 mt-3 max-w-lg mx-auto">Kami menyediakan berbagai fasilitas untuk kenyamanan dan keamanan setiap pengunjung</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Kolam Dewasa -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/kolam-dewasa-1.jpg" alt="Kolam Renang Dewasa" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M2 12c1.5 0 2.5-1 4-1s2.5 1 4 1 2.5-1 4-1 2.5 1 4 1v2c-1.5 0-2.5-1-4-1s-2.5 1-4 1-2.5-1-4-1-2.5 1-4 1v-2zm0 4c1.5 0 2.5-1 4-1s2.5 1 4 1 2.5-1 4-1 2.5 1 4 1v2c-1.5 0-2.5-1-4-1s-2.5 1-4 1-2.5-1-4-1-2.5 1-4 1v-2zm6-8l4-4 4 4H8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Kolam Renang Dewasa</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Kolam renang ukuran besar dengan air bersih dan jernih, dilengkapi lintasan renang dan seluncuran.</p>
+                    </div>
+                </div>
+
+                <!-- Kolam Anak -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/kolam-anak-1.jpg" alt="Kolam Renang Anak" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-cyan-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-cyan-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0 014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Kolam Renang Anak</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Kolam dangkal khusus anak-anak, aman dan menyenangkan untuk si kecil belajar dan bermain air.</p>
+                    </div>
+                </div>
+
+                <!-- Kantin -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/kantin-1.jpg" alt="Kantin" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-6.67-15.03-6.67-15.03 0h15.03zM1.02 17h15v2h-15v-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Kantin (±10 Unit)</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Berbagai pilihan makanan dan minuman yang dikelola langsung oleh warga masyarakat lokal sekitar.</p>
+                    </div>
+                </div>
+
+                <!-- Sewa Ban -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/sewa-ban.jpg" alt="Sewa Ban Pelampung" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Sewa Ban Pelampung</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Tersedia berbagai pilihan ban pelampung dan mainan air yang dapat disewa dengan harga terjangkau.</p>
+                    </div>
+                </div>
+
+                <!-- Kamar Mandi -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/kamar-mandi.jpg" alt="Kamar Mandi" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-teal-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M7 6c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zM20 12H4V7c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v1h8V7c0-.55.45-1 1-1h1c.55 0 1 .45 1 1v5zm0 2l-1.5 6H5.5L4 14h16z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Kamar Mandi & Toilet</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Fasilitas kamar mandi dan toilet bersih tersedia gratis untuk seluruh pengunjung.</p>
+                    </div>
+                </div>
+
+                <!-- Area Tunggu -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/area-tunggu.jpg" alt="Area Tunggu" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-indigo-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4 18v-2.5c0-.83.67-1.5 1.5-1.5h13c.83 0 1.5.67 1.5 1.5V18h1v2H3v-2h1zM4 10V8c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v2H4zm0 2h16v2H4v-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Area Tunggu</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Area tunggu yang nyaman tersedia bagi pengantar maupun pengunjung yang sedang beristirahat.</p>
+                    </div>
+                </div>
+
+                <!-- Parkir -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/parkir.jpg" alt="Area Parkir" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M13 3H6v18h4v-6h3c3.31 0 6-2.69 6-6s-2.69-6-6-6zm.2 8H10V7h3.2c1.1 0 2 .9 2 2s-.9 2-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Area Parkir Kendaraan</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Area parkir luas tersedia di dalam lokasi untuk kendaraan roda dua maupun roda empat.</p>
+                    </div>
+                </div>
+
+                <!-- Musholla -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/musholla.jpg" alt="Musholla" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Musholla</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Tersedia musholla bagi pengunjung yang ingin menunaikan ibadah sholat di area kolam renang.</p>
+                    </div>
+                </div>
+
+                <!-- P3K -->
+                <div class="facility-card bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100">
+                    <div class="h-48 overflow-hidden">
+                        <img src="assets/ruang-p3k.jpg" alt="Ruang P3K" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-5">
+                        <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center mb-3">
+                            <svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-6 15h-2v-4H7v-2h4V8h2v4h4v2h-4v4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-1">Ruang P3K & Keamanan</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Sistem keamanan dan penanganan pertolongan pertama tersedia demi keselamatan seluruh pengunjung.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ GALERI ═══════════════════════════════ -->
+    <section id="galeri" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-14">
+                <span class="text-blue-600 font-semibold text-xs uppercase tracking-widest">Foto & Dokumentasi</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-gray-800">Galeri</h2>
+                <p class="text-gray-500 mt-3 max-w-lg mx-auto">Lihat suasana kolam renang Tirta Nada dari berbagai sudut</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/hero-kolam-pengunjung.jpg" alt="Kolam Renang dengan Pengunjung">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/kolam-dewasa-1.jpg" alt="Kolam Renang Dewasa">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/kolam-dewasa-2.jpg" alt="Kolam Renang Dewasa">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/kolam-dewasa-seluncuran.jpg" alt="Kolam Renang dengan Seluncuran">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/kolam-anak-1.jpg" alt="Kolam Anak">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/kolam-anak-2.jpg" alt="Kolam Anak">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/kantin-1.jpg" alt="Kantin">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/kantin-2.jpg" alt="Kantin Suasana">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/sewa-ban.jpg" alt="Sewa Ban Pelampung">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/papan-nama.jpg" alt="Papan Nama Tirta Nada Cibogo">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/loket-tiket.jpg" alt="Loket Pembelian Tiket">
+                </div>
+                <div class="gallery-item cursor-pointer rounded-xl aspect-square" onclick="openLightbox(this)">
+                    <img src="assets/musholla.jpg" alt="Musholla">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <button onclick="closeLightbox()" class="absolute top-4 right-5 text-white text-4xl font-light leading-none z-10 hover:text-yellow-400 transition">&times;</button>
+        <button id="lb-prev" onclick="event.stopPropagation(); lbNav(-1)" class="absolute left-3 text-white text-4xl font-light leading-none z-10 hover:text-yellow-400 transition px-3">&#8249;</button>
+        <button id="lb-next" onclick="event.stopPropagation(); lbNav(1)"  class="absolute right-3 text-white text-4xl font-light leading-none z-10 hover:text-yellow-400 transition px-3">&#8250;</button>
+        <img id="lb-img" src="" alt="" class="max-w-[88vw] max-h-[88vh] object-contain rounded-xl shadow-2xl select-none">
+    </div>
+
+
+    <!-- ═══════════════════════════════ TENTANG KAMI ═══════════════════════════════ -->
+    <section id="tentang" class="py-20 bg-blue-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- Text -->
+                <div>
+                    <span class="text-yellow-400 font-semibold text-xs uppercase tracking-widest">Tentang Kami</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-6">CV Tirta Nada</h2>
+                    <p class="text-blue-200 leading-relaxed mb-4">
+                        CV Tirta Nada merupakan badan usaha yang bergerak di bidang pengelolaan kolam renang yang berlokasi di Kecamatan Walantaka, Kota Serang, Banten. Didirikan pada <strong class="text-white">17 April 2014</strong>, CV Tirta Nada hadir sebagai solusi atas keterbatasan fasilitas olahraga air yang terjangkau bagi masyarakat sekitar.
+                    </p>
+                    <p class="text-blue-200 leading-relaxed mb-8">
+                        Sejak awal berdiri, perusahaan ini tidak hanya berfokus pada aspek bisnis, tetapi juga memberikan dampak sosial melalui penyediaan lapangan kerja serta mendukung kegiatan olahraga dan rekreasi masyarakat.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-blue-800/60 rounded-2xl p-5 border border-blue-700/50">
+                            <h3 class="font-bold text-yellow-400 mb-2 text-sm uppercase tracking-wide">Visi</h3>
+                            <p class="text-blue-200 text-sm leading-relaxed">Menjadi destinasi wisata air yang unggul, terjangkau, dan bermanfaat bagi masyarakat.</p>
+                        </div>
+                        <div class="bg-blue-800/60 rounded-2xl p-5 border border-blue-700/50">
+                            <h3 class="font-bold text-yellow-400 mb-2 text-sm uppercase tracking-wide">Misi</h3>
+                            <ul class="text-blue-200 text-sm space-y-1 leading-relaxed">
+                                <li>• Fasilitas rekreasi air yang aman & nyaman</li>
+                                <li>• Kualitas layanan & kebersihan terjaga</li>
+                                <li>• Memberdayakan masyarakat lokal</li>
+                                <li>• Mendukung olahraga & pendidikan jasmani</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="relative">
+                    <img src="assets/papan-nama.jpg" alt="Papan Nama CV Tirta Nada"
+                         class="rounded-2xl shadow-2xl w-full object-cover max-h-96 lg:max-h-none">
+                    <div class="absolute -bottom-5 -right-3 bg-yellow-400 rounded-2xl px-5 py-4 text-blue-900 shadow-xl">
+                        <p class="text-3xl font-extrabold leading-none">2014</p>
+                        <p class="text-xs font-semibold mt-0.5">Berdiri sejak</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keunggulan -->
+            <div class="mt-20">
+                <h3 class="text-2xl font-bold text-center mb-10">Keunggulan Kami</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+                    <div class="text-center">
+                        <div class="w-14 h-14 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                            <svg class="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+                        </div>
+                        <p class="text-sm font-medium text-blue-100">Harga Terjangkau</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                            <svg class="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+                        </div>
+                        <p class="text-sm font-medium text-blue-100">Keamanan Utama</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                            <svg class="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                        </div>
+                        <p class="text-sm font-medium text-blue-100">Masyarakat Lokal</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-14 h-14 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                            <svg class="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14H9V7h2v10zm4 0h-2V7h2v10z"/></svg>
+                        </div>
+                        <p class="text-sm font-medium text-blue-100">Air Selalu Bersih</p>
+                    </div>
+                    <div class="text-center col-span-2 sm:col-span-1">
+                        <div class="w-14 h-14 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+                            <svg class="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 24 24"><path d="M10 2c-1.1 0-2 .9-2 2v4H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2h-4V4c0-1.1-.9-2-2-2h-4zm0 2h4v4h-4V4zm-6 8h16v8H4v-8zm8 1c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                        </div>
+                        <p class="text-sm font-medium text-blue-100">Ramah Keluarga</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ KONTAK ═══════════════════════════════ -->
+    <section id="kontak" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-14">
+                <span class="text-blue-600 font-semibold text-xs uppercase tracking-widest">Hubungi Kami</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-gray-800">Kontak</h2>
+                <p class="text-gray-500 mt-3 max-w-lg mx-auto">Jangan ragu untuk menghubungi kami jika ada pertanyaan lebih lanjut</p>
+            </div>
+
+            <!-- Contact Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+
+                <!-- WhatsApp -->
+                <a href="https://wa.me/6282125089779" target="_blank" rel="noopener"
+                   class="flex items-start gap-4 bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-green-300 hover:shadow-md transition group">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 transition">
+                        <svg class="w-6 h-6 text-green-600 group-hover:text-white transition" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.527 5.843L.057 23.486l5.784-1.517A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.66-.523-5.174-1.43l-.37-.219-3.434.9.918-3.352-.241-.386A9.982 9.982 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-gray-800 text-sm">WhatsApp / Telepon</p>
+                        <p class="text-green-600 font-bold mt-0.5">0821-2508-9779</p>
+                        <p class="text-gray-400 text-xs mt-1">Klik untuk chat sekarang</p>
+                    </div>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:cvtirtanada17@gmail.com"
+                   class="flex items-start gap-4 bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-blue-300 hover:shadow-md transition group">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 transition">
+                        <svg class="w-6 h-6 text-blue-600 group-hover:text-white transition" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-gray-800 text-sm">Email</p>
+                        <p class="text-blue-600 font-bold mt-0.5 text-sm break-all">cvtirtanada17@gmail.com</p>
+                        <p class="text-gray-400 text-xs mt-1">Kirim pertanyaan via email</p>
+                    </div>
+                </a>
+
+                <!-- Alamat -->
+                <div class="flex items-start gap-4 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <svg class="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-gray-800 text-sm">Alamat</p>
+                        <p class="text-gray-600 text-sm mt-0.5 leading-relaxed">Kp. Cibogo Barat RT 01/04,<br>Kel. Nyapah, Kec. Walantaka,<br>Kota Serang, Banten</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Maps -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 mb-8">
+                <div class="relative w-full" style="padding-bottom: 40%;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111423.64330887374!2d106.15307133530949!3d-6.149260446705545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e421e4fb470f7b7%3A0x6f490ef3b2fd1ed0!2sKolam%20Renang%20Tirta%20Nada!5e0!3m2!1sid!2sid!4v1778915308951!5m2!1sid!2sid"
+                        class="absolute inset-0 w-full h-full"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="px-6 py-4 flex items-center justify-between flex-wrap gap-3">
+                    <p class="text-sm text-gray-500">Kp. Cibogo Barat, Kel. Nyapah, Kec. Walantaka, Kota Serang, Banten</p>
+                    <a href="https://maps.app.goo.gl/search/?q=Kolam+Renang+Tirta+Nada" target="_blank" rel="noopener"
+                       class="text-sm text-blue-600 font-semibold hover:underline flex items-center gap-1">
+                        Buka di Google Maps
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- CTA Banner -->
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-center text-white shadow-xl">
+                <h3 class="text-2xl font-bold mb-2">Siap Berkunjung?</h3>
+                <p class="text-blue-200 mb-6">Hubungi kami sekarang untuk informasi harga tiket dan jadwal kunjungan</p>
+                <a href="https://wa.me/6282125089779" target="_blank" rel="noopener"
+                   class="inline-block bg-yellow-400 text-blue-900 font-bold px-10 py-3 rounded-full hover:bg-yellow-300 transition shadow-lg">
+                    Chat WhatsApp Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+    <footer class="bg-blue-950 text-white py-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center font-extrabold text-blue-900 text-sm">TN</div>
+                    <div>
+                        <p class="font-bold">CV Tirta Nada Cibogo</p>
+                        <p class="text-blue-400 text-xs">Kota Serang, Banten</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 text-sm text-blue-300">
+                    <a href="#home"      class="hover:text-yellow-400 transition">Home</a>
+                    <a href="#fasilitas" class="hover:text-yellow-400 transition">Fasilitas</a>
+                    <a href="#galeri"    class="hover:text-yellow-400 transition">Galeri</a>
+                    <a href="#tentang"   class="hover:text-yellow-400 transition">Tentang Kami</a>
+                    <a href="#kontak"    class="hover:text-yellow-400 transition">Kontak</a>
+                </div>
+            </div>
+            <div class="border-t border-blue-900 mt-8 pt-6 text-center text-blue-500 text-xs">
+                &copy; 2024 CV Tirta Nada. Semua hak dilindungi.
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+    <script>
+        // Mobile menu
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const burgerOpen = document.getElementById('burger-open');
+        const burgerClose = document.getElementById('burger-close');
+
+        burger.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            burgerOpen.classList.toggle('hidden', !isHidden);
+            burgerClose.classList.toggle('hidden', isHidden);
+        });
+
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
+            burgerOpen.classList.remove('hidden');
+            burgerClose.classList.add('hidden');
+        }
+
+        // Active nav highlight on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('a.nav-link');
+
+        function updateActiveNav() {
+            let current = '';
+            sections.forEach(s => {
+                if (window.scrollY >= s.offsetTop - 100) current = s.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+            });
+        }
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+
+        // Lightbox
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        let lbIndex = 0;
+        const lbSrcs = Array.from(galleryItems).map(el => el.querySelector('img').src);
+        const lbAlts = Array.from(galleryItems).map(el => el.querySelector('img').alt);
+
+        function openLightbox(el) {
+            lbIndex = Array.from(galleryItems).indexOf(el);
+            lbImg.src = lbSrcs[lbIndex];
+            lbImg.alt = lbAlts[lbIndex];
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function lbNav(dir) {
+            lbIndex = (lbIndex + dir + lbSrcs.length) % lbSrcs.length;
+            lbImg.src = lbSrcs[lbIndex];
+            lbImg.alt = lbAlts[lbIndex];
+        }
+
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft')  lbNav(-1);
+            if (e.key === 'ArrowRight') lbNav(1);
+        });
+    </script>
+</body>
+</html>
