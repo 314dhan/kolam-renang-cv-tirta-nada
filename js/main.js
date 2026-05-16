@@ -2,11 +2,16 @@
 const splash = document.getElementById('splash');
 if (splash) {
     document.body.style.overflow = 'hidden';
-    setTimeout(() => {
+    let splashDone = false;
+    function exitSplash() {
+        if (splashDone) return;
+        splashDone = true;
         splash.classList.add('splash-exit');
         document.body.style.overflow = '';
         setTimeout(() => { splash.remove(); }, 700);
-    }, 1800);
+    }
+    splash.addEventListener('click', exitSplash);
+    setTimeout(exitSplash, 1800);
 }
 
 /* ── Mobile menu ── */
