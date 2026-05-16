@@ -11,7 +11,7 @@ if (splash) {
         setTimeout(() => { splash.remove(); }, 700);
     }
     splash.addEventListener('click', exitSplash);
-    setTimeout(exitSplash, 1800);
+    setTimeout(exitSplash, 1200);
 }
 
 /* ── Mobile menu ── */
