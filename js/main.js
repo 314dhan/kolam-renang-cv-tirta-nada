@@ -1,3 +1,14 @@
+/* ── Splash screen ── */
+const splash = document.getElementById('splash');
+if (splash) {
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+        splash.classList.add('splash-exit');
+        document.body.style.overflow = '';
+        setTimeout(() => { splash.remove(); }, 700);
+    }, 1800);
+}
+
 /* ── Mobile menu ── */
 const burger = document.getElementById('burger');
 const mMenu  = document.getElementById('mobile-menu');
